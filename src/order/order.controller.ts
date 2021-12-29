@@ -118,9 +118,9 @@ export class OrderController {
             await queryRunner.commitTransaction();
 
             return source;
-        } catch (e) {
+        } catch (err) {
             await queryRunner.rollbackTransaction();
-
+            console.log({ err })
             throw new BadRequestException();
         } finally {
             await queryRunner.release();
